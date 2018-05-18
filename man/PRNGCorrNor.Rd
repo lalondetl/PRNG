@@ -20,18 +20,18 @@ PRNGCorrNor(seed, S, Tvec, rhoyy, rhoxy, rhoyx, TDCTypes, dataTypes, beta, pred,
 
 \item{rhoyx}{The weight representing the correlation between "previous" responses and time-dependent covariate values.  This is associated with Type IV time-dependent covariates.}
 
-\item{TDCTypes}{The vector indicating the type (I, II, III, or IV) of each time-dependent covariate.}
+\item{TDCTypes}{The vector indicating the type (0, 1, 2, 3, or 4) of each time-dependent covariate.  A type of "0" indicates a time-independent covariate.  This vector should be ordered by time-independent covariates first.}
 
-\item{dataTypes}{The vector indicating the type of each predictor.  Either 'b' for binary or 'c' for continuous.}
+\item{dataTypes}{The vector indicating the type of each predictor.  Either 'b' for binary or 'c' for continuous.  This includes all time-independent covariates, all time-dependent covariates, in that order, but not the intercept.}
 
-\item{beta}{The vector of "true" parameter values according to which data will be randomly generated.  This includes coefficients for all time-independent covariates, all time-dependent covariates, and an intercept.}
+\item{beta}{The vector of "true" parameter values according to which data will be randomly generated.  This includes coefficients for an intercept, all time-independent covariates, and all time-dependent covariates, in that order.}
 
-\item{pred}{A vector of parameters describing the distributions of predictors.  Each binary predictor should have an associated probability of success, while each continuous predictors should have an associated standard deviation.}
+\item{pred}{A vector of parameters describing the distributions of predictors.  Each binary predictor should have an associated probability of success, while each continuous predictor should have an associated standard deviation.  This includes all time-dependent covariates, all time-independent covariates, but not the intercept.  Continuous predictors will be assumed to be "centered" (mean of 0) but not "standardized" (variance can be other than 1).}
 
 \item{sigma}{The error standard deviation associated with the normal outcomes generated.}
 }
 \description{
-This function produces pseudo-random numbers for both predictors and responses for correlated (longitudinal) data.  The responses are generated as normal data.  The predictors can be either continuous or binary, and can include both time-independent and time-dependent covariates.  Time-dependent covariates can be controlled as either Type I, Type II, Type III, or Type IV time-dependent covariates.  The function returns a response vector, a design matric for the time-dependent covariates (with intercept column), and a design matrix for the time-independent covariates.
+This function produces pseudo-random numbers for both predictors and responses for correlated (longitudinal) data.  The responses are generated as normal data.  The predictors can be either continuous or binary, and can include both time-independent and time-dependent covariates.  Time-dependent covariates can be controlled as either Type I, Type II, Type III, or Type IV time-dependent covariates.  The function returns a response vector, a design matrix for the time-dependent covariates (with intercept column), and a design matrix for the time-independent covariates.
 }
 \examples{
 PRNGCorrNor()
